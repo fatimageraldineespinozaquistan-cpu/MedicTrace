@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#172554">
+    <title>MedicTrace V3 | Trazabilidad inteligente</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles-v3.css">
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar">
+            <a href="#" class="brand">
+                <div class="brand-icon">M</div>
+                <div>
+                    <strong>MedicTrace</strong>
+                    <span>BLOCKCHAIN PLATFORM</span>
+                </div>
+            </a>
+
+            <div class="sidebar-label">MENÚ PRINCIPAL</div>
+
+            <nav class="navigation">
+                <a href="#inicio" class="nav-link active">
+                    <span class="nav-icon">▦</span>
+                    Dashboard
+                </a>
+                <a href="#conexion" class="nav-link">
+                    <span class="nav-icon">◈</span>
+                    Conexión
+                </a>
+                <a href="#seccionRegistroMedicamentos" class="nav-link">
+                    <span class="nav-icon">＋</span>
+                    Medicamentos
+                </a>
+                <a href="#seccionRegistroEtapas" class="nav-link">
+                    <span class="nav-icon">⇢</span>
+                    Trazabilidad
+                </a>
+                <a href="#consulta" class="nav-link">
+                    <span class="nav-icon">⌕</span>
+                    Consultar
+                </a>
+                <a href="#gs1" class="nav-link">
+                    <span class="nav-icon">▥</span>
+                    GS1 y códigos QR
+                </a>
+                <a href="#seccionAdministracion" class="nav-link">
+                    <span class="nav-icon">⚙</span>
+                    Administración
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="network-card">
+                    <span class="network-indicator"></span>
+                    <div>
+                        <strong>Sepolia Testnet</strong>
+                        <small>Red de pruebas Ethereum</small>
+                    </div>
+                </div>
+                <div class="sidebar-version">MEDICTRACE V3.0</div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <span class="eyebrow">PLATAFORMA DE TRAZABILIDAD</span>
+                    <h1>Panel de control</h1>
+                </div>
+
+                <div class="topbar-right">
+                    <span class="topbar-network">
+                        <span class="network-indicator"></span>
+                        Sepolia
+                    </span>
+                    <span class="version-pill">V3.0</span>
+                </div>
+            </header>
+
+            <section class="welcome-section" id="inicio">
+                <div>
+                    <span class="welcome-tag">GESTIÓN INTELIGENTE</span>
+                    <h2>Bienvenido a <span>MedicTrace</span></h2>
+                    <p>Supervisa y gestiona la trazabilidad de medicamentos mediante tecnología blockchain.</p>
+                </div>
+                <div class="welcome-decoration">
+                    <div class="decoration-circle">M</div>
+                </div>
+            </section>
+
+            <!-- DASHBOARD -->
+            <section class="dashboard-section">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">RESUMEN GENERAL</span>
+                        <h2>Estado del sistema</h2>
+                    </div>
+                    <span class="live-label"><span></span> Panel en tiempo real</span>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Conexión blockchain</span>
+                            <span class="stat-icon blue">◈</span>
+                        </div>
+                        <strong id="dashboardConexion">Desconectado</strong>
+                        <small id="dashboardDireccion">Conecta tu billetera</small>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Rol identificado</span>
+                            <span class="stat-icon purple">♙</span>
+                        </div>
+                        <strong id="dashboardRol">No identificado</strong>
+                        <small>Permisos de usuario</small>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Medicamento consultado</span>
+                            <span class="stat-icon cyan">▣</span>
+                        </div>
+                        <strong class="stat-value-small" id="dashboardMedicamento">Sin consulta</strong>
+                        <small id="dashboardLote">Consulta un medicamento</small>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Etapas registradas</span>
+                            <span class="stat-icon green">✓</span>
+                        </div>
+                        <strong id="dashboardEtapas">0 de 5</strong>
+                        <small id="dashboardEstado">Sin etapas registradas</small>
+                    </article>
+                </div>
+
+                <div class="dashboard-bottom">
+                    <article class="panel progress-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <span class="eyebrow">SEGUIMIENTO</span>
+                                <h3>Progreso de trazabilidad</h3>
+                            </div>
+                            <strong id="dashboardPorcentaje" class="progress-number">0%</strong>
+                        </div>
+
+                        <div class="progress-track">
+                            <div id="dashboardBarraProgreso" class="progress-fill"></div>
+                        </div>
+
+                        <div class="progress-legend">
+                            <span>Inicio del recorrido</span>
+                            <span>Recorrido completo</span>
+                        </div>
+                    </article>
+
+                    <article class="panel activity-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <span class="eyebrow">ÚLTIMOS MOVIMIENTOS</span>
+                                <h3>Actividad reciente</h3>
+                            </div>
+                        </div>
+                        <div id="dashboardActividad" class="dashboard-activity">
+                            <p>Aún no hay actividad para mostrar.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- CONEXIÓN -->
+            <section class="content-section panel" id="conexion">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">BILLETERA DIGITAL</span>
+                        <h2>Conexión blockchain</h2>
+                        <p>Conecta tu billetera para acceder a las funciones según tu rol.</p>
+                    </div>
+                    <span class="section-symbol">◈</span>
+                </div>
+
+                <div class="connection-box">
+                    <div class="connection-info">
+                        <span class="connection-dot"></span>
+                        <div>
+                            <strong id="estadoConexion">Billetera no conectada</strong>
+                            <small id="rolUsuario">Rol: No identificado</small>
+                        </div>
+                    </div>
+                    <button id="btnConectar" class="btn btn-primary">Conectar MetaMask <span>→</span></button>
+                </div>
+            </section>
+
+            <!-- ADMINISTRACIÓN -->
+            <section class="content-section panel" id="seccionAdministracion">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CONTROL DE ACCESO</span>
+                        <h2>Administración de participantes</h2>
+                        <p>Gestiona los roles y permisos de los participantes de la red.</p>
+                    </div>
+                    <span class="section-symbol">⚙</span>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field full-width">
+                        <label for="direccionParticipante">Dirección de billetera</label>
+                        <input type="text" id="direccionParticipante" placeholder="0x...">
+                    </div>
+
+                    <div class="field">
+                        <label for="rolParticipante">Rol del participante</label>
+                        <select id="rolParticipante">
+                            <option value="0">Sin rol</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Laboratorio</option>
+                            <option value="3">Distribuidor</option>
+                            <option value="4">Farmacia</option>
+                            <option value="5">Regulador</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="btnRegistrarParticipante" class="btn btn-primary">Registrar participante</button>
+                    <button id="btnConsultarRol" class="btn btn-secondary">Consultar rol</button>
+                    <button id="btnCambiarRol" class="btn btn-secondary">Cambiar rol</button>
+                    <button id="btnDesactivarParticipante" class="btn btn-danger">Desactivar participante</button>
+                </div>
+
+                <p id="mensajeAdministracion" class="feedback"></p>
+            </section>
+
+            <!-- REGISTRO MEDICAMENTO -->
+            <section class="content-section panel" id="seccionRegistroMedicamentos">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">LABORATORIO</span>
+                        <h2>Registrar medicamento</h2>
+                        <p>Incorpora un nuevo medicamento al sistema de trazabilidad.</p>
+                    </div>
+                    <span class="section-symbol">＋</span>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="gtin">GTIN (14 dígitos)</label>
+                        <input type="text" id="gtin" maxlength="14" placeholder="07712345678905">
+                    </div>
+
+                    <div class="field">
+                        <label for="lote">Número de lote</label>
+                        <input type="text" id="lote" placeholder="LOTE2026A">
+                    </div>
+
+                    <div class="field">
+                        <label for="serie">Número de serie</label>
+                        <input type="text" id="serie" placeholder="SERIE0001">
+                    </div>
+
+                    <div class="field">
+                        <label for="vencimiento">Fecha de vencimiento</label>
+                        <input type="date" id="vencimiento">
+                    </div>
+                </div>
+
+                <button id="btnRegistrarMedicamento" class="btn btn-primary">Registrar medicamento <span>→</span></button>
+                <p id="mensajeRegistro" class="feedback"></p>
+            </section>
+
+            <!-- REGISTRO DE ETAPAS -->
+            <section class="content-section panel" id="seccionRegistroEtapas">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CADENA DE SUMINISTRO</span>
+                        <h2>Registrar etapa de trazabilidad</h2>
+                        <p>Registra el movimiento correspondiente al rol conectado.</p>
+                    </div>
+                    <span class="section-symbol">⇢</span>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="gtinEtapa">GTIN</label>
+                        <input type="text" id="gtinEtapa" maxlength="14" placeholder="GTIN del medicamento">
+                    </div>
+
+                    <div class="field">
+                        <label for="serieEtapa">Número de serie</label>
+                        <input type="text" id="serieEtapa" placeholder="SERIE0001">
+                    </div>
+
+                    <div class="field full-width">
+                        <label for="etapa">Etapa asignada</label>
+                        <select id="etapa">
+                            <option value="">Conecta tu billetera primero</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="ubicacionEtapa">Ubicación</label>
+                        <input type="text" id="ubicacionEtapa" placeholder="Ej. Lima, Perú">
+                    </div>
+
+                    <div class="field">
+                        <label for="referenciaEtapa">Referencia</label>
+                        <input type="text" id="referenciaEtapa" placeholder="Código o detalle de operación">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="btnRegistrarEtapa" class="btn btn-primary">Registrar etapa <span>→</span></button>
+                    <button id="btnConsultarSiguiente" class="btn btn-secondary">Consultar siguiente etapa</button>
+                </div>
+
+                <p id="mensajeEtapa" class="feedback"></p>
+                <p id="siguienteEtapa" class="feedback feedback-soft"></p>
+            </section>
+
+            <!-- CONSULTA -->
+            <section class="content-section panel" id="consulta">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CONSULTA PÚBLICA DEL REGISTRO</span>
+                        <h2>Consultar medicamento</h2>
+                        <p>Busca la información y el recorrido registrado en blockchain.</p>
+                    </div>
+                    <span class="section-symbol">⌕</span>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="gtinConsulta">GTIN</label>
+                        <input type="text" id="gtinConsulta" maxlength="14" placeholder="07712345678905">
+                    </div>
+
+                    <div class="field">
+                        <label for="serieConsulta">Número de serie</label>
+                        <input type="text" id="serieConsulta" placeholder="SERIE0001">
+                    </div>
+                </div>
+
+                <button id="btnConsultar" class="btn btn-primary">Consultar medicamento <span>→</span></button>
+
+                <div id="resultadoConsulta" class="result-container"></div>
+
+                <div class="history-section">
+                    <div class="history-heading">
+                        <span class="eyebrow">HISTORIAL BLOCKCHAIN</span>
+                        <h3>Recorrido del medicamento</h3>
+                    </div>
+                    <div id="historialTrazabilidad" class="timeline">
+                        <p class="empty-state">Aquí aparecerán las etapas registradas del medicamento.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GS1 Y QR -->
+            <section class="content-section panel" id="gs1">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">IDENTIFICACIÓN DIGITAL</span>
+                        <h2>GS1 Digital Link y código QR</h2>
+                        <p>Genera un enlace de identificación y su correspondiente código QR.</p>
+                    </div>
+                    <span class="section-symbol">▥</span>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="gtinGS1">GTIN</label>
+                        <input type="text" id="gtinGS1" maxlength="14" placeholder="07712345678905">
+                    </div>
+
+                    <div class="field">
+                        <label for="serieGS1">Número de serie</label>
+                        <input type="text" id="serieGS1" placeholder="SERIE0001">
+                    </div>
+                </div>
+
+                <button id="btnGenerarGS1" class="btn btn-primary">Generar enlace y QR</button>
+
+                <div id="resultadoGS1" class="gs1-result"></div>
+                <div id="codigoQR" class="qr-container"></div>
+
+                <div class="qr-divider"></div>
+
+                <div class="history-heading">
+                    <span class="eyebrow">LECTURA DE CÓDIGOS</span>
+                    <h3>Escanear código QR</h3>
+                    <p>Utiliza la cámara para leer un GS1 Digital Link.</p>
+                </div>
+
+                <button id="btnIniciarEscaneo" class="btn btn-secondary">Iniciar escaneo QR</button>
+                <div id="lectorQR" class="qr-reader"></div>
+                <p id="resultadoEscaneo" class="feedback"></p>
+            </section>
+
+            <footer class="footer">
+                <div class="footer-brand">
+                    <strong>MedicTrace <span>V3</span></strong>
+                    <small>Trazabilidad de medicamentos mediante blockchain.</small>
+                </div>
+                <span>Proyecto académico · Red de pruebas Sepolia</span>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.5/ethers.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="app-v3.js"></script>
+</body>
+</html>
