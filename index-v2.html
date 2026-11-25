@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedicTrace V2 - Trazabilidad de Medicamentos</title>
+    <link rel="stylesheet" href="styles-v2.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <header class="encabezado">
+        <h1>MedicTrace V2</h1>
+        <p>Sistema de trazabilidad y verificación de medicamentos</p>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <!-- CONEXIÓN BLOCKCHAIN -->
+        <section class="seccion">
+            <h2>Conexión Blockchain</h2>
+
+            <div class="grupo-campos">
+                <button id="btnConectar">Conectar con MetaMask</button>
+                <p id="estadoConexion">Billetera no conectada</p>
+                <p id="rolUsuario">Rol: No identificado</p>
+            </div>
+        </section>
+
+
+<!-- PANEL DE ADMINISTRACIÓN -->
+<section class="seccion" id="seccionAdministracion">
+
+    <h2>Administración de participantes</h2>
+
+    <p class="descripcion">
+        Gestiona los participantes y sus permisos dentro de MedicTrace.
+    </p>
+
+    <div class="grupo-campos">
+
+        <label for="direccionParticipante">
+            Dirección de la billetera:
+        </label>
+
+        <input
+            type="text"
+            id="direccionParticipante"
+            placeholder="0x..."
+        >
+
+        <label for="rolParticipante">
+            Rol del participante:
+        </label>
+
+        <select id="rolParticipante">
+            <option value="2">Laboratorio</option>
+            <option value="3">Distribuidor</option>
+            <option value="4">Farmacia</option>
+            <option value="5">Regulador</option>
+        </select>
+
+    </div>
+
+    <div class="botones-administracion">
+
+        <button id="btnRegistrarParticipante">
+            Registrar participante
+        </button>
+
+        <button id="btnConsultarRol">
+            Consultar rol
+        </button>
+
+        <button id="btnCambiarRol">
+            Cambiar rol
+        </button>
+
+        <button id="btnDesactivarParticipante">
+            Desactivar participante
+        </button>
+
+    </div>
+
+    <p id="mensajeAdministracion"></p>
+
+</section>
+
+
+        <!-- REGISTRO DE MEDICAMENTOS -->
+        <section class="seccion" id="seccionRegistroMedicamentos">
+    <h2>Registro de medicamentos</h2>
+
+            <div class="formulario-grid">
+                <div class="grupo-campos">
+                    <label for="gtin">GTIN (14 dígitos)</label>
+                    <input type="text" id="gtin" maxlength="14">
+                </div>
+
+                <div class="grupo-campos">
+                    <label for="lote">Número de lote</label>
+                    <input type="text" id="lote">
+                </div>
+
+                <div class="grupo-campos">
+                    <label for="serie">Número de serie</label>
+                    <input type="text" id="serie">
+                </div>
+
+                <div class="grupo-campos">
+                    <label for="vencimiento">Fecha de vencimiento</label>
+                    <input type="date" id="vencimiento">
+                </div>
+            </div>
+
+            <button id="btnRegistrarMedicamento">
+                Registrar medicamento
+            </button>
+
+            <p id="mensajeRegistro"></p>
+        </section>
+
+        <!-- REGISTRO DE ETAPAS -->
+        <section class="seccion" id="seccionRegistroEtapas">
+            <h2>Registrar etapa de trazabilidad</h2>
+
+            <div class="formulario-grid">
+                <div class="grupo-campos">
+                    <label for="gtinEtapa">GTIN</label>
+                    <input type="text" id="gtinEtapa" maxlength="14">
+                </div>
+
+                <div class="grupo-campos">
+                    <label for="serieEtapa">Número de serie</label>
+                    <input type="text" id="serieEtapa">
+                </div>
+
+                <div class="grupo-campos">
+                    <label for="etapa">Etapa del recorrido</label>
+                    <select id="etapa">
+                        <option value="0">Fabricación</option>
+                        <option value="1">Despacho al distribuidor</option>
+                        <option value="2">Recepción del distribuidor</option>
+                        <option value="3">Despacho a farmacia</option>
+                        <option value="4">Recepción en farmacia</option>
+                    </select>
+                </div>
+
+                <div class="grupo-campos">
+                    <label for="ubicacionEtapa">Ubicación</label>
+                    <input type="text" id="ubicacionEtapa">
+                </div>
+
+                <div class="grupo-campos">
+                    <label for="referenciaEtapa">Referencia</label>
+                    <input type="text" id="referenciaEtapa">
+                </div>
+            </div>
+
+            <div class="grupo-botones">
+                <button id="btnRegistrarEtapa">Registrar etapa</button>
+                <button id="btnConsultarSiguiente">Consultar siguiente etapa</button>
+            </div>
+
+            <p id="mensajeEtapa"></p>
+            <p id="siguienteEtapa"></p>
+        </section>
+
+
+        <!-- HISTORIAL DE TRAZABILIDAD -->
+        <section class="seccion-historial">
+            <h2>Historial de trazabilidad</h2>
+            <p class="descripcion">
+                Consulta los datos del medicamento y revisa las etapas de su recorrido.
+            </p>
+
+            <div class="formulario-consulta">
+                <div class="campo">
+                    <label for="gtinConsulta">GTIN</label>
+                    <input
+                        type="text"
+                        id="gtinConsulta"
+                        maxlength="14"
+                        placeholder="07712345678905"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="serieConsulta">Número de serie</label>
+                    <input
+                        type="text"
+                        id="serieConsulta"
+                        placeholder="SERIE0001"
+                    >
+                </div>
+            </div>
+
+            <button id="btnConsultar">
+                Consultar medicamento
+            </button>
+
+            <div id="resultadoConsulta"></div>
+            <div id="historialTrazabilidad"></div>
+        </section>
+
+        <!-- GS1 DIGITAL LINK Y CÓDIGO QR -->
+        <section class="seccion-gs1">
+            <h2>GS1 Digital Link</h2>
+            <p class="descripcion">
+                Genera un enlace identificador y su código QR para el medicamento.
+            </p>
+
+            <div class="formulario-gs1">
+                <div class="campo">
+                    <label for="gtinGS1">GTIN</label>
+                    <input
+                        type="text"
+                        id="gtinGS1"
+                        maxlength="14"
+                        placeholder="07712345678905"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="serieGS1">Número de serie</label>
+                    <input
+                        type="text"
+                        id="serieGS1"
+                        placeholder="SERIE0001"
+                    >
+                </div>
+            </div>
+
+            <button id="btnGenerarGS1">
+                Generar enlace GS1
+            </button>
+
+            <div id="resultadoGS1"></div>
+            <div id="codigoQR"></div>
+
+            <hr>
+
+            <div class="seccion-lector">
+                <h3>Escanear código QR</h3>
+                <p class="descripcion">
+                    Activa la cámara para leer el código QR y consultar el medicamento.
+                </p>
+
+                <button id="btnIniciarEscaneo">
+                    Activar cámara y escanear
+                </button>
+
+                <div id="lectorQR"></div>
+                <p id="resultadoEscaneo"></p>
+            </div>
+        </section>
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="app-v2.js"></script>
+
+</body>
+</html>
